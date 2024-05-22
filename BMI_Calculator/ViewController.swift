@@ -28,6 +28,7 @@ class ViewController: UIViewController {
         }
         set {
             UserDefaults.standard.set(newValue, forKey: "height")
+            heightTextField.text = String(height)
         }
     }
     
@@ -37,6 +38,7 @@ class ViewController: UIViewController {
         }
         set {
             UserDefaults.standard.set(newValue, forKey: "weight")
+            weightTextField.text = String(weight)
         }
     }
     
@@ -46,6 +48,7 @@ class ViewController: UIViewController {
         }
         set {
             UserDefaults.standard.set(newValue, forKey: "nickname")
+            nicknameTextField.text = nickname
         }
     }
     
@@ -156,10 +159,6 @@ class ViewController: UIViewController {
         height = 0
         weight = 0
         nickname = ""
-        
-        heightTextField.text = String(height)
-        weightTextField.text = String(weight)
-        nicknameTextField.text = nickname
     }
 
 
