@@ -19,8 +19,29 @@ class ViewController: UIViewController {
     @IBOutlet var randomButton: UIButton!
     @IBOutlet var calculateButton: UIButton!
     
+    var height: Float {
+        get {
+            return UserDefaults.standard.float(forKey: "height")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "height")
+        }
+    }
+    
+    var weight: Float {
+        get {
+            return UserDefaults.standard.float(forKey: "weight")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "weight")
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        heightTextField.text = String(height)
+        weightTextField.text = String(weight)
         
         configureLabel(titleLabel, text: "BMI Calculator", font: .boldSystemFont(ofSize: 24))
         configureLabel(messageLabel, text: "당신의 BMI 지수를\n알려드릴게요.", font: .systemFont(ofSize: 14))
@@ -49,6 +70,8 @@ class ViewController: UIViewController {
         
         if let height = Float(heightTextField.text!), let weight = Float(weightTextField.text!) {
             showResultAlert(bmi: calculateBMI(height: height, weight: weight))
+            self.height = height
+            self.weight = weight
         } else if heightTextField.text == "" && weightTextField.text == "" {
             showAlert(title: "아무것도 입력하지 않았습니다.", message: "키와 몸무게를 입력해주세요.")
         } else {
