@@ -38,8 +38,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func randomButtonTapped(_ sender: UIButton) {
-        var randomHeight = Float.random(in: 1.5...2.5)
-        var randomWeight = Float.random(in: 40...200)
+        let randomHeight = Float.random(in: 1.5...2.5)
+        let randomWeight = Float.random(in: 40...200)
         
         showResultAlert(bmi: calculateBMI(height: randomHeight, weight: randomWeight))
         
@@ -50,9 +50,9 @@ class ViewController: UIViewController {
         if let height = Float(heightTextField.text!), let weight = Float(weightTextField.text!) {
             showResultAlert(bmi: calculateBMI(height: height, weight: weight))
         } else if heightTextField.text == "" && weightTextField.text == "" {
-            showBlankAlert()
+            showAlert(title: "아무것도 입력하지 않았습니다.", message: "키와 몸무게를 입력해주세요.")
         } else {
-            showAlert()
+            showAlert(title: "잘못된 값을 입력하셨습니다.", message: "숫자만 입력해주세요.")
         }
     }
     
@@ -69,17 +69,8 @@ class ViewController: UIViewController {
         }
     }
     
-    func showAlert() {
+    func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: "잘못된 값을 입력하셨습니다.", message: "숫자만 입력해주세요.", preferredStyle: .alert)
-        let check = UIAlertAction(title: "확인", style: .default)
-        
-        alert.addAction(check)
-        
-        present(alert, animated: true)
-    }
-    
-    func showBlankAlert() {
-        let alert = UIAlertController(title: "아무것도 입력하지 않았습니다.", message: "키와 몸무게를 입력해주세요.", preferredStyle: .alert)
         let check = UIAlertAction(title: "확인", style: .default)
         
         alert.addAction(check)
