@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     @IBOutlet var calculateButton: UIButton!
     @IBOutlet var askNicknameLabel: UILabel!
     @IBOutlet var nicknameTextField: UITextField!
+    @IBOutlet var resetButton: UIButton!
     
     var height: Float {
         get {
@@ -72,6 +73,9 @@ class ViewController: UIViewController {
         
         configureButton(randomButton, text: "랜덤으로 BMI 계산하기", tintColor: .brown, backgroundColor: .systemBackground, size: 12)
         configureButton(calculateButton, text: "결과 확인", tintColor: .white, backgroundColor: .systemPurple, size: 20)
+        
+        configureButton(resetButton, text: "리셋", tintColor: .white, backgroundColor: .systemRed, size: 20)
+        resetButton.addTarget(self, action: #selector(resetButtonTapped), for: .touchUpInside)
     }
     
     @IBAction func randomButtonTapped(_ sender: UIButton) {
@@ -146,6 +150,16 @@ class ViewController: UIViewController {
         button.tintColor = tintColor
         button.backgroundColor = backgroundColor
         button.titleLabel?.font = .systemFont(ofSize: size)
+    }
+    
+    @objc func resetButtonTapped() {
+        height = 0
+        weight = 0
+        nickname = ""
+        
+        heightTextField.text = String(height)
+        weightTextField.text = String(weight)
+        nicknameTextField.text = nickname
     }
 
 
